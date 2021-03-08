@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using StoreDL;
 
 namespace MvcStore
 {
@@ -24,6 +26,7 @@ namespace MvcStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<StoreDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Connor_Agnone-P1")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
