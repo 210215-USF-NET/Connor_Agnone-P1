@@ -4,7 +4,7 @@ namespace StoreBL
 {
     public interface IStoreBL
     {
-        void CreateCustomer(Customer newCustomer);
+        Customer CreateCustomer(Customer newCustomer);
         void CreateLocation(Location newLocation);
         void CreateProduct(Product newProduct);
         List<Customer> GetCustomers();

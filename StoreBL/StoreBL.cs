@@ -13,9 +13,9 @@ namespace StoreBL
         {
             _repo = repo;
         }
-        public void CreateCustomer(Customer newCustomer)
+        public Customer CreateCustomer(Customer newCustomer)
         {
-            _repo.CreateCustomer(newCustomer);
+            return _repo.CreateCustomer(newCustomer);
         }
         public void CreateLocation(Location newLocation)
         {
