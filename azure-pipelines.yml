@@ -22,13 +22,9 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: '210215-USF-NET_Connor_Agnone-P1'
     projectName: 'Connor_Agnone-P1'
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
+  displayName: build
   inputs:
     command: 'build'
     projects: '**/*.sln'
@@ -40,6 +36,7 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 - task: DotNetCoreCLI@2
+  displayName: publish
   inputs:
     command: 'publish'
     zipAfterPublish: true
