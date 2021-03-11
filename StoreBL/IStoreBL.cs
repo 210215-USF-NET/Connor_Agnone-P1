@@ -5,18 +5,18 @@ namespace StoreBL
     public interface IStoreBL
     {
         Customer CreateCustomer(Customer newCustomer);
-        void CreateLocation(Location newLocation);
-        void CreateProduct(Product newProduct);
+        Location CreateLocation(Location newLocation);
+        Product CreateProduct(Product newProduct);
         List<Customer> GetCustomers();
         Customer SearchCustomerName(string customer);
         //Customer CurrentCustomer(Customer newCustomer);
         //Location CurrentLocation(Location newLocation);
-        void DeleteCustomer(Customer customer2BDeleted);
+        Customer DeleteCustomer(Customer customer2BDeleted);
         List<Location> GetLocations();
         List<Product> GetProducts();
         List<Inventory> GetInventories();
-        void CreateOrder(Order newOrder);
-        void UpdateInventory(Order newOrder);
+        Order CreateOrder(Order newOrder);
+        Order UpdateInventory(Order newOrder);
         /*void CreateProduct(Product newProduct);//manager functionality
         //search customer, view location inventory, place order
         Customer SearchCustomer();

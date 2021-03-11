@@ -17,18 +17,18 @@ namespace StoreBL
         {
             return _repo.CreateCustomer(newCustomer);
         }
-        public void CreateLocation(Location newLocation)
+        public Location CreateLocation(Location newLocation)
         {
-            _repo.CreateLocation(newLocation);
+            return _repo.CreateLocation(newLocation);
         }
-        public void CreateProduct(Product newProduct)
+        public Product CreateProduct(Product newProduct)
         {
-            _repo.CreateProduct(newProduct);
+            return _repo.CreateProduct(newProduct);
         }
 
-        public void DeleteCustomer(Customer customer2BDeleted)
+        public Customer DeleteCustomer(Customer customer2BDeleted)
         {
-            _repo.DeleteCustomer(customer2BDeleted);
+            return _repo.DeleteCustomer(customer2BDeleted);
         }
 
         public List<Customer> GetCustomers()
@@ -59,14 +59,14 @@ namespace StoreBL
             return _repo.SetLocation(locationID);
         }
 
-        public void CreateOrder(Order newOrder)
+        public Order CreateOrder(Order newOrder)
         {
-            _repo.CreateOrder(newOrder);
+            return _repo.CreateOrder(newOrder);
         }
 
-        public void UpdateInventory(Order newOrder)
+        public Order UpdateInventory(Order newOrder)
         {
-            _repo.UpdateInventory(newOrder);
+            return _repo.UpdateInventory(newOrder);
         }
     }
 }
