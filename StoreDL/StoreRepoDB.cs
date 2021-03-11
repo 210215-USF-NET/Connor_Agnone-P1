@@ -47,7 +47,9 @@ namespace StoreDL
 
         public Customer DeleteCustomer(Customer customer2BDeleted)
         {
-            throw new NotImplementedException();
+            _context.Customers.Remove(customer2BDeleted);
+            _context.SaveChanges();
+            return customer2BDeleted;
         }
 
         public List<Customer> GetCustomers()
@@ -83,6 +85,15 @@ namespace StoreDL
         public Location SetLocation(int locationID)
         {
             throw new NotImplementedException();
+        }
+
+        public Customer UpdateCustomer(Customer customer2BUpdated)
+        {
+            Customer oldCustomer = _context.Customers.Find(customer2BUpdated.Id);
+            _context.Entry(oldCustomer).CurrentValues.SetValues(customer2BUpdated);
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+            return customer2BUpdated;
         }
 
         public Order UpdateInventory(Order newOrder)

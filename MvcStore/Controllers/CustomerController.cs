@@ -53,5 +53,32 @@ namespace MvcStore.Controllers
             }
             return View();
         }
+        public ActionResult Edit(string name)
+        {
+            return View(_mapper.cast2CustomerEditVM(_storeBL.SearchCustomerName(name)));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CustomerEditVM customer2BUpdated)
+        {
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    _storeBL.UpdateCustomer(_mapper.cast2Customer(customer2BUpdated));
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            return View();
+        }
+        public ActionResult Delete(string name)
+        {
+            _storeBL.DeleteCustomer(_storeBL.SearchCustomerName(name));
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

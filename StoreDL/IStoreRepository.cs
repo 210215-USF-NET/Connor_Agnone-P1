@@ -18,5 +18,6 @@ namespace StoreDL
         Customer CurrentCustomer(Customer newCustomer);
         Order CreateOrder(Order newOrder);
         Order UpdateInventory(Order newOrder);
+        Customer UpdateCustomer(Customer customer2BUpdated);
     }
 }

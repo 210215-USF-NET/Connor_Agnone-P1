@@ -68,5 +68,10 @@ namespace StoreBL
         {
             return _repo.UpdateInventory(newOrder);
         }
+
+        public Customer UpdateCustomer(Customer customer2BUpdated)
+        {
+            return _repo.UpdateCustomer(customer2BUpdated);
+        }
     }
 }

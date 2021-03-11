@@ -28,5 +28,23 @@ namespace MvcStore.Models
                 CustomerEmail = customer.CustomerEmail
             };
         }
+        public Customer cast2Customer(CustomerEditVM customer2BCasted)
+        {
+            return new Customer
+            {
+                Id = customer2BCasted.CustomerId,
+                CustomerName = customer2BCasted.CustomerName,
+                CustomerEmail = customer2BCasted.CustomerEmail
+            };
+        }
+        public CustomerEditVM cast2CustomerEditVM(Customer customer)
+        {
+            return new CustomerEditVM
+            {
+                CustomerId = customer.Id,
+                CustomerName = customer.CustomerName,
+                CustomerEmail = customer.CustomerEmail
+            };
+        }
     }
 }

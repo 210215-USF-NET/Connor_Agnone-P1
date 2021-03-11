@@ -17,6 +17,7 @@ namespace StoreBL
         List<Inventory> GetInventories();
         Order CreateOrder(Order newOrder);
         Order UpdateInventory(Order newOrder);
+        Customer UpdateCustomer(Customer customer2BUpdated);
         /*void CreateProduct(Product newProduct);//manager functionality
         //search customer, view location inventory, place order
         Customer SearchCustomer();

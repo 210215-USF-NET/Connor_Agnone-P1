@@ -32,11 +32,9 @@
                     @Html.DisplayFor(modelItem => item.CustomerEmail)
                 </td>
                 <td>
-                    @* Helpers are also used to tie your views to particular actions in controllers *@
-                    @* This is an html helper *@
-                    @*Html.ActionLink("Edit", "Edit", new { name = item.CustomerName }) |*@
-                    @*Html.ActionLink("Details", "Details", new { name=item.CustomerName }) |*@
-                    @*Html.ActionLink("Delete", "Delete", new { name=item.CustomerName})*@
+                    @Html.ActionLink("Edit", "Edit", new { name = item.CustomerName }) |
+                    @Html.ActionLink("Details", "Details", new { name=item.CustomerName }) |
+                    @Html.ActionLink("Delete", "Delete", new { name=item.CustomerName})
                 </td>
             </tr>
         }
