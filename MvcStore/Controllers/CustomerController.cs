@@ -32,7 +32,7 @@ namespace MvcStore.Controllers
         //GET: CustomerController/Create
         public ActionResult Create()
         {
-            return View("CreateHero");
+            return View("CreateCustomer");
         }
         //POST: CustomerController/Create
         [HttpPost]
