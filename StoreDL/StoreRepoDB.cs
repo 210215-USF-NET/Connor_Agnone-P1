@@ -62,17 +62,26 @@ namespace StoreDL
 
         public List<Inventory> GetInventories()
         {
-            throw new NotImplementedException();
+            return _context.Inventories
+                .AsNoTracking()
+                .Select(inventory => inventory)
+                .ToList();
         }
 
         public List<Location> GetLocations()
         {
-            throw new NotImplementedException();
+            return _context.Locations
+                .AsNoTracking()
+                .Select(location => location)
+                .ToList();
         }
 
         public List<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return _context.Products
+                .AsNoTracking()
+                .Select(product => product)
+                .ToList();
         }
 
         public Customer SearchCustomerName(string name)

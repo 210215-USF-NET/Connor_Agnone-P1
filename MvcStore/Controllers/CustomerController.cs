@@ -12,8 +12,8 @@ namespace MvcStore.Controllers
 {
     public class CustomerController : Controller
     {
-        private IStoreBL _storeBL;
-        private IMapper _mapper;
+        private readonly IStoreBL _storeBL;
+        private readonly IMapper _mapper;
         public CustomerController(IStoreBL storeBL, IMapper mapper)
         {
             _storeBL = storeBL;

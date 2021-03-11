@@ -1,0 +1,39 @@
+@model IEnumerable<MvcStore.Models.LocationIndexVM>
+
+@{
+    ViewData["Title"] = "Locations";
+}
+
+<h1>Check Out Our Locations</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationAddress)
+                </td>
+                <td>
+                    @*Html.ActionLink("Edit", "Edit", new { name = item.CustomerName }) | *@
+                    @*Html.ActionLink("Details", "Details", new { name=item.CustomerName }) |*@
+                    @*Html.ActionLink("Delete", "Delete", new { name=item.CustomerName}) *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

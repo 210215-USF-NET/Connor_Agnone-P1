@@ -46,5 +46,13 @@ namespace MvcStore.Models
                 CustomerEmail = customer.CustomerEmail
             };
         }
+        public LocationIndexVM cast2LocationIndexVM(Location location2BCasted)
+        {
+            return new LocationIndexVM
+            {
+                LocationName = location2BCasted.LocationName,
+                LocationAddress = location2BCasted.LocationAddress
+            };
+        }
     }
 }

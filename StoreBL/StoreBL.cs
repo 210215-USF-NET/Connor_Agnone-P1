@@ -6,7 +6,7 @@ namespace StoreBL
 {
     public class MyStoreBL : IStoreBL
     {
-        private IStoreRepository _repo;
+        private readonly IStoreRepository _repo;
         public Location currentLocation{ get; set; }
         public Customer currentCustomer { get; set; }
         public MyStoreBL(IStoreRepository repo)
