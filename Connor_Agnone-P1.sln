@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreDL", "StoreDL\StoreDL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreModels", "StoreModels\StoreModels.csproj", "{28465145-A89B-433A-9F89-C03A93BD05AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreUI", "StoreUI\StoreUI.csproj", "{C9AB2F95-619F-4647-A5BE-E8134FA3293D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStore", "MvcStore\MvcStore.csproj", "{C9AB2F95-619F-4647-A5BE-E8134FA3293D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
