@@ -20,7 +20,7 @@ steps:
     SonarCloud: 'connoragnone'
     organization: '210215-usf-net'
     scannerMode: 'MSBuild'
-    projectKey: '210215-USF-NET_ Connor_Agnone-P1'
+    projectKey: '210215-USF-NET_Connor_Agnone-P1'
     projectName: 'Connor_Agnone-P1'
 - task: NuGetToolInstaller@1
 
