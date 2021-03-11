@@ -15,18 +15,28 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: SonarCloudPrepare@1
   inputs:
-    restoreSolution: '$(solution)'
+    SonarCloud: 'connoragnone'
+    organization: '210215-usf-net'
+    scannerMode: 'MSBuild'
+    projectKey: '210215-USF-NET_Connor_Agnone-P1'
+    projectName: 'Connor_Agnone-P1'
 
 - task: DotNetCoreCLI@2
+  displayName: build
   inputs:
     command: 'build'
     projects: '**/*.sln'
 
+- task: SonarCloudAnalyze@1
+  displayName: run code analysis
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 - task: DotNetCoreCLI@2
+  displayName: publish
   inputs:
     command: 'publish'
     zipAfterPublish: true
