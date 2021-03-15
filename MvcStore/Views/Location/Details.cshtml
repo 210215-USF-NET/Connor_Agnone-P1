@@ -1,0 +1,45 @@
+@model IEnumerable<MvcStore.Models.LocationIVM>
+
+@{
+    ViewData["Title"] = "Location's Inventory";
+}
+
+<h1>Check Out Our Inventory</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventroyQuantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InventroyQuantity)
+                </td>
+                <td>
+                    @*Html.ActionLink("Edit", "Edit", new { name = item.CustomerName }) | *@
+                    @*Html.ActionLink("Details", "Details", new { Id=item.LocationID }) |*@
+                    @*Html.ActionLink("Delete", "Delete", new { name=item.CustomerName}) *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

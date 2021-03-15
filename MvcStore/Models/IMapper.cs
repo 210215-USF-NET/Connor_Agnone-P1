@@ -12,5 +12,7 @@ namespace MvcStore.Models
         Customer cast2Customer(CustomerEditVM customer2BCasted);
         //Location mappers
         LocationIndexVM cast2LocationIndexVM(Location location2BCasted);
+        Inventory cast2Inventory(LocationIVM inventory2BCasted);
+        LocationIVM cast2LocationIVM(Inventory inventory2BCasted);
     }
 }

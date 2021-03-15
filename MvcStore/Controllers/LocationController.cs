@@ -25,5 +25,9 @@ namespace MvcStore.Controllers
             return View(_storeBL.GetLocations().Select(location => _mapper.cast2LocationIndexVM(location)).ToList());
         }
 
+        public ActionResult Details(int Id)
+        {
+            return View(_storeBL.GetInventories(Id).Select(inventory => _mapper.cast2LocationIVM(inventory)).ToList());
+        }
     }
 }

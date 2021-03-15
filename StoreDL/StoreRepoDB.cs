@@ -60,7 +60,32 @@ namespace StoreDL
                 .ToList();
         }
 
-        public List<Inventory> GetInventories()
+        public List<Inventory> GetInventories(int locationID)
+        {
+            List<Product> products = _context.Products
+                                            .AsNoTracking()
+                                            .Select(product => product)
+                                            .ToList();
+            List<Inventory> inventory = _context.Inventories
+                                            .AsNoTracking()
+                                            .Where(inventory => inventory.LocationID == locationID)
+                                            .ToList();
+            for(int i = 0; i < inventory.Count; i++)
+            {
+                foreach(var product in products)
+                {
+                    if(product.Id == inventory[i].ProductID)
+                    {
+                        inventory[i].InventoryProduct = product;
+                        break;
+                    }
+                }
+            }
+            
+            return inventory;
+        }
+
+        public List<Inventory> GetInventory()
         {
             return _context.Inventories
                 .AsNoTracking()
@@ -93,7 +118,9 @@ namespace StoreDL
 
         public Location SetLocation(int locationID)
         {
-            throw new NotImplementedException();
+            return _context.Locations
+                .AsNoTracking()
+                .FirstOrDefault(location => location.Id == locationID);
         }
 
         public Customer UpdateCustomer(Customer customer2BUpdated)

@@ -51,7 +51,32 @@ namespace MvcStore.Models
             return new LocationIndexVM
             {
                 LocationName = location2BCasted.LocationName,
-                LocationAddress = location2BCasted.LocationAddress
+                LocationAddress = location2BCasted.LocationAddress,
+                LocationID = location2BCasted.Id
+            };
+        }
+        public Inventory cast2Inventory(LocationIVM inventory2BCasted)
+        {
+            return new Inventory
+            {
+                InventoryQuantity = inventory2BCasted.InventroyQuantity,
+                LocationID = inventory2BCasted.LocationId,
+                InventoryProduct = new Product
+                {
+                    ProductName = inventory2BCasted.ProductName,
+                    ProductPrice = inventory2BCasted.ProductPrice
+                }
+            };
+        }
+
+        public LocationIVM cast2LocationIVM(Inventory inventory2BCasted)
+        {
+            return new LocationIVM
+            {
+                ProductName = inventory2BCasted.InventoryProduct.ProductName,
+                ProductPrice = inventory2BCasted.InventoryProduct.ProductPrice,
+                InventroyQuantity = inventory2BCasted.InventoryQuantity,
+                LocationId = inventory2BCasted.LocationID
             };
         }
     }

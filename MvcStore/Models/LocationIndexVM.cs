@@ -9,5 +9,7 @@ namespace MvcStore.Models
 
         [DisplayName("Location Address")]
         public string LocationAddress { get; set; }
+
+        public int LocationID { get; set; }
     }
 }

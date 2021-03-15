@@ -14,7 +14,9 @@ namespace StoreBL
         Customer DeleteCustomer(Customer customer2BDeleted);
         List<Location> GetLocations();
         List<Product> GetProducts();
-        List<Inventory> GetInventories();
+        List<Inventory> GetInventory();
+        List<Inventory> GetInventories(int locationID);
+        Location SetLocation(int locationID);
         Order CreateOrder(Order newOrder);
         Order UpdateInventory(Order newOrder);
         Customer UpdateCustomer(Customer customer2BUpdated);
