@@ -14,10 +14,17 @@ namespace MvcStore.Controllers
     {
         private readonly IStoreBL _storeBL;
         private readonly IMapper _mapper;
+        private readonly ILogger<CustomerController> _logger;
         public CustomerController(IStoreBL storeBL, IMapper mapper)
         {
             _storeBL = storeBL;
             _mapper = mapper;
+        }
+        public CustomerController(IStoreBL storeBL, IMapper mapper,ILogger<CustomerController> logger)
+        {
+            _storeBL = storeBL;
+            _mapper = mapper;
+            _logger = logger;
         }
         //GET: CustomerController
         public ActionResult Index()
@@ -43,6 +50,7 @@ namespace MvcStore.Controllers
             {
                 try
                 {
+                    _logger.LogInformation($"Customer {newCustomer.CustomerName} has been created!");
                     _storeBL.CreateCustomer(_mapper.cast2Customer(newCustomer));
                     return RedirectToAction(nameof(Index));
                 }
@@ -65,6 +73,7 @@ namespace MvcStore.Controllers
             {
                 try
                 {
+                    _logger.LogInformation($"Customer {customer2BUpdated.CustomerName} has been edited!");
                     _storeBL.UpdateCustomer(_mapper.cast2Customer(customer2BUpdated));
                     return RedirectToAction(nameof(Index));
                 }
@@ -77,6 +86,7 @@ namespace MvcStore.Controllers
         }
         public ActionResult Delete(string name)
         {
+            _logger.LogInformation($"Customer: {name} has been deleted!");
             _storeBL.DeleteCustomer(_storeBL.SearchCustomerName(name));
             return RedirectToAction(nameof(Index));
         }
