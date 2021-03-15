@@ -61,6 +61,7 @@ namespace MvcStore.Models
             {
                 InventoryQuantity = inventory2BCasted.InventroyQuantity,
                 LocationID = inventory2BCasted.LocationId,
+                Id = inventory2BCasted.InventoryId,
                 InventoryProduct = new Product
                 {
                     ProductName = inventory2BCasted.ProductName,
@@ -76,7 +77,32 @@ namespace MvcStore.Models
                 ProductName = inventory2BCasted.InventoryProduct.ProductName,
                 ProductPrice = inventory2BCasted.InventoryProduct.ProductPrice,
                 InventroyQuantity = inventory2BCasted.InventoryQuantity,
-                LocationId = inventory2BCasted.LocationID
+                LocationId = inventory2BCasted.LocationID,
+                InventoryId = inventory2BCasted.Id
+            };
+        }
+
+        public Inventory cast2Inventory(LocationEditVM inventory2BCasted)
+        {
+            return new Inventory
+            {
+                InventoryQuantity = inventory2BCasted.InventoryQuantity,
+                LocationID = inventory2BCasted.LocationId,
+                Id = inventory2BCasted.InventoryId,
+                ProductID = inventory2BCasted.ProductId,
+            };
+        }
+
+        public LocationEditVM cast2LocationEditVM(Inventory inventory)
+        {
+            return new LocationEditVM
+            {
+                LocationId = inventory.LocationID,
+                InventoryId = inventory.Id,
+                InventoryQuantity = inventory.InventoryQuantity,
+                ProductName = inventory.InventoryProduct.ProductName,
+                ProductPrice = inventory.InventoryProduct.ProductPrice,
+                ProductId = inventory.InventoryProduct.Id
             };
         }
     }

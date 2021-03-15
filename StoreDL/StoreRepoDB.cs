@@ -27,7 +27,9 @@ namespace StoreDL
 
         public Order CreateOrder(Order newOrder)
         {
-            throw new NotImplementedException();
+            _context.Orders.Add(newOrder);
+            _context.SaveChanges();
+            return newOrder;
         }
 
         public Product CreateProduct(Product newProduct)
@@ -84,6 +86,27 @@ namespace StoreDL
             
             return inventory;
         }
+        public Inventory GetInventory(int inventoryID)
+        {
+            Inventory inventory = _context.Inventories
+                                            .AsNoTracking()
+                                            .Where(inventory => inventory.Id == inventoryID)
+                                            .FirstOrDefault();
+            List<Product> products = _context.Products
+                                            .AsNoTracking()
+                                            .Select(product => product)
+                                            .ToList();
+            
+            foreach(var product in products)
+            {
+                if(product.Id == inventory.ProductID)
+                {
+                    inventory.InventoryProduct = product;
+                    break;
+                }
+            }
+            return inventory;
+        }
 
         public List<Inventory> GetInventory()
         {
@@ -134,7 +157,29 @@ namespace StoreDL
 
         public Order UpdateInventory(Order newOrder)
         {
-            throw new NotImplementedException();
+            List<Inventory> currentInventory = GetInventories(newOrder.LocationID);
+            foreach (var item in newOrder.OrderItems)
+            {
+                foreach (var inventory in currentInventory)
+                {
+                    if(item.OrderItemProduct.Id == inventory.InventoryProduct.Id)
+                    {
+                        Inventory temp  = inventory;
+                        temp.InventoryQuantity = temp.InventoryQuantity - item.OrderQuantity;
+                        temp = UpdateInventory(temp);
+                    }
+                }
+            }
+            return newOrder;
+        }
+
+        public Inventory UpdateInventory(Inventory inventory2BUpdated)
+        {
+            Inventory oldInventory = _context.Inventories.Find(inventory2BUpdated.Id);
+            _context.Entry(oldInventory).CurrentValues.SetValues(inventory2BUpdated);
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+            return inventory2BUpdated;
         }
     }
 }

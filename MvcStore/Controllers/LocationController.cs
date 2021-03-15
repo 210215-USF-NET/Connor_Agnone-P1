@@ -29,5 +29,28 @@ namespace MvcStore.Controllers
         {
             return View(_storeBL.GetInventories(Id).Select(inventory => _mapper.cast2LocationIVM(inventory)).ToList());
         }
+
+        public ActionResult Edit(int Id)
+        {
+            return View(_mapper.cast2LocationEditVM(_storeBL.GetInventory(Id)));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(LocationEditVM inventory2BUpdated)
+        {
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    _storeBL.UpdateInventory(_mapper.cast2Inventory(inventory2BUpdated));
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            return View();
+        }
     }
 }

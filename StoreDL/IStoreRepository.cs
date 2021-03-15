@@ -14,11 +14,13 @@ namespace StoreDL
         List<Location> GetLocations();
         List<Inventory> GetInventories(int locationID);
         List<Inventory> GetInventory();
+        Inventory GetInventory(int inventoryID);
         List<Product> GetProducts();
         Location CurrentLocation(Location newLocation);
         Customer CurrentCustomer(Customer newCustomer);
         Order CreateOrder(Order newOrder);
         Order UpdateInventory(Order newOrder);
+        Inventory UpdateInventory(Inventory inventory2BUpdated);
         Customer UpdateCustomer(Customer customer2BUpdated);
     }
 }

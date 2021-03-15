@@ -16,9 +16,11 @@ namespace StoreBL
         List<Product> GetProducts();
         List<Inventory> GetInventory();
         List<Inventory> GetInventories(int locationID);
+        Inventory GetInventory(int inventoryID);
         Location SetLocation(int locationID);
         Order CreateOrder(Order newOrder);
         Order UpdateInventory(Order newOrder);
+        Inventory UpdateInventory(Inventory newInventory);
         Customer UpdateCustomer(Customer customer2BUpdated);
         /*void CreateProduct(Product newProduct);//manager functionality
         //search customer, view location inventory, place order

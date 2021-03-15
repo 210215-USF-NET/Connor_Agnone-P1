@@ -49,6 +49,10 @@ namespace StoreBL
         {
             return _repo.GetInventory();
         }
+        public Inventory GetInventory(int inventoryID)
+        {
+            return _repo.GetInventory(inventoryID);
+        }
         public List<Inventory> GetInventories(int locationId)
         {
             return _repo.GetInventories(locationId);
@@ -71,6 +75,11 @@ namespace StoreBL
         public Order UpdateInventory(Order newOrder)
         {
             return _repo.UpdateInventory(newOrder);
+        }
+
+        public Inventory UpdateInventory(Inventory newInventory)
+        {
+            return _repo.UpdateInventory(newInventory);
         }
 
         public Customer UpdateCustomer(Customer customer2BUpdated)
