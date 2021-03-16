@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using MvcStore.Models;
 using StoreBL;
@@ -26,6 +27,11 @@ namespace MvcStore.Controllers
         }
 
         public ActionResult Details(int Id)
+        {
+            _storeBL.currentLocation = _storeBL.SetLocation(Id);
+            return View(_storeBL.GetInventories(Id).Select(inventory => _mapper.cast2LocationIVM(inventory)).ToList());
+        }
+        public ActionResult Manager(int Id)
         {
             return View(_storeBL.GetInventories(Id).Select(inventory => _mapper.cast2LocationIVM(inventory)).ToList());
         }

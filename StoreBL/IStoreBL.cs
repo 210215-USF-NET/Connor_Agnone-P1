@@ -4,6 +4,8 @@ namespace StoreBL
 {
     public interface IStoreBL
     {
+        public Location currentLocation{ get; set; }
+        public Customer currentCustomer { get; set; }
         Customer CreateCustomer(Customer newCustomer);
         Location CreateLocation(Location newLocation);
         Product CreateProduct(Product newProduct);

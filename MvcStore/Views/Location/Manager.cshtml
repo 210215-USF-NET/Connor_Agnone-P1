@@ -1,4 +1,3 @@
-@using Microsoft.AspNetCore.Http
 @model IEnumerable<MvcStore.Models.LocationIVM>
 
 @{
@@ -36,10 +35,7 @@
                     @Html.DisplayFor(modelItem => item.InventroyQuantity)
                 </td>
                 <td>
-                    @if (Context.Session.GetString("CustomerEmail") != null)
-                    {
-                        @Html.ActionLink("Add to Order","Details","Order", new {Id = item.InventoryId})
-                    }
+                    @Html.ActionLink("Edit", "Edit", new { Id = item.InventoryId }) | 
                     @*Html.ActionLink("Details", "Details", new { Id=item.LocationID }) |*@
                     @*Html.ActionLink("Delete", "Delete", new { name=item.CustomerName}) *@
                 </td>
