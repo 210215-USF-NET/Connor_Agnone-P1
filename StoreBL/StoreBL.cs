@@ -86,5 +86,10 @@ namespace StoreBL
         {
             return _repo.UpdateCustomer(customer2BUpdated);
         }
+
+        public Customer GetCustomerByEmail(string email)
+        {
+            return _repo.GetCustomerByEmail(email);
+        }
     }
 }

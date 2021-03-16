@@ -9,6 +9,7 @@ namespace StoreBL
         Product CreateProduct(Product newProduct);
         List<Customer> GetCustomers();
         Customer SearchCustomerName(string customer);
+        Customer GetCustomerByEmail(string  email);
         //Customer CurrentCustomer(Customer newCustomer);
         //Location CurrentLocation(Location newLocation);
         Customer DeleteCustomer(Customer customer2BDeleted);

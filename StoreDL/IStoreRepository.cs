@@ -9,6 +9,7 @@ namespace StoreDL
         Product CreateProduct(Product newProduct);
         List<Customer> GetCustomers();
         Customer SearchCustomerName(string name);
+        Customer GetCustomerByEmail(string email);
         Location SetLocation(int locationID);
         Customer DeleteCustomer(Customer customer2BDeleted);
         List<Location> GetLocations();

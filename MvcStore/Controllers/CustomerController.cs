@@ -4,9 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using MvcStore.Models;
 using StoreBL;
+using StoreModels;
 
 namespace MvcStore.Controllers
 {
@@ -35,11 +37,6 @@ namespace MvcStore.Controllers
         public ActionResult Details(string name)
         {
             return View(_mapper.cast2CustomerCRVM(_storeBL.SearchCustomerName(name)));
-        }
-        //GET: CustomerController/Create
-        public ActionResult Create()
-        {
-            return View("CreateCustomer");
         }
         //POST: CustomerController/Create
         [HttpPost]
@@ -89,6 +86,33 @@ namespace MvcStore.Controllers
             _logger.LogInformation($"Customer: {name} has been deleted!");
             _storeBL.DeleteCustomer(_storeBL.SearchCustomerName(name));
             return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View("Login");
+        }
+        [HttpPost]
+        public ActionResult Login(CustomerCRVM customerVM)
+        {
+            if (ModelState.IsValid)
+            {
+                Customer customer = _storeBL.GetCustomerByEmail(customerVM.CustomerEmail);
+                if (customer == null)
+                {
+                    return NotFound();
+                }
+                HttpContext.Session.SetString("CustomerEmail", customer.CustomerEmail);
+                HttpContext.Session.SetInt32("CustomerID", customer.Id);
+                return Redirect("/");
+            }
+            return BadRequest("Invalid model state");
+        }
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Remove("CustomerEmail");
+            HttpContext.Session.Remove("CustomerID");
+            return Redirect("/");
         }
     }
 }

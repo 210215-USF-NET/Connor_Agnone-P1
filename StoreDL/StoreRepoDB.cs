@@ -54,6 +54,13 @@ namespace StoreDL
             return customer2BDeleted;
         }
 
+        public Customer GetCustomerByEmail(string email)
+        {
+            return _context.Customers
+                .AsNoTracking()
+                .FirstOrDefault(customer => customer.CustomerEmail == email);
+        }
+
         public List<Customer> GetCustomers()
         {
             return _context.Customers

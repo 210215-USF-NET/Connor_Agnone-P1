@@ -12,6 +12,7 @@ using MvcStore.Controllers;
 using MvcStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using Microsoft.Extensions.Logging.Abstractions;
 namespace StoreTests
 {
     public class CustomerControllerTest
@@ -36,7 +37,8 @@ namespace StoreTests
                         CustomerEmail = "jack@email.com"
                     }
                 });
-            var controller = new CustomerController(mockRepo.Object, new Mapper());
+            var logger = new NullLogger<CustomerController>();
+            var controller = new CustomerController(mockRepo.Object, new Mapper(), logger);
 
             var result = controller.Index();
 
