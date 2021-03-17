@@ -42,7 +42,7 @@ namespace MvcStore.Controllers
             {
                 try
                 {
-                    _logger.LogInformation($"Customer {newCustomer.CustomerName} has been created!");
+                    _logger.LogWarning($"Customer {newCustomer.CustomerName} has been created!");
                     _storeBL.CreateCustomer(_mapper.cast2Customer(newCustomer));
                     return RedirectToAction(nameof(Index));
                 }
@@ -65,7 +65,7 @@ namespace MvcStore.Controllers
             {
                 try
                 {
-                    _logger.LogInformation($"Customer {customer2BUpdated.CustomerName} has been edited!");
+                    _logger.LogWarning($"Customer {customer2BUpdated.CustomerName} has been edited!");
                     _storeBL.UpdateCustomer(_mapper.cast2Customer(customer2BUpdated));
                     return RedirectToAction(nameof(Index));
                 }
@@ -78,7 +78,7 @@ namespace MvcStore.Controllers
         }
         public ActionResult Delete(string name)
         {
-            _logger.LogInformation($"Customer: {name} has been deleted!");
+            _logger.LogWarning($"Customer: {name} has been deleted!");
             _storeBL.DeleteCustomer(_storeBL.SearchCustomerName(name));
             return RedirectToAction(nameof(Index));
         }

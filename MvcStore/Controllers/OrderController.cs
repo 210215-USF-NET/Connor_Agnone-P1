@@ -15,12 +15,14 @@ namespace MvcStore.Controllers
     {
         private readonly IStoreBL _storeBL;
         private readonly IMapper _mapper;
+        private readonly ILogger<OrderController> _logger;
         private static Order cart = new Order();
         
-        public OrderController(IStoreBL storeBL,IMapper mapper )
+        public OrderController(IStoreBL storeBL,IMapper mapper,ILogger<OrderController> logger )
         {
             _storeBL = storeBL;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public ActionResult Checkout()
@@ -31,6 +33,8 @@ namespace MvcStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Checkout(CheckoutVM checkout)
         {
+            _logger.LogWarning($"User Checkout!");
+            cart.OrderItems.Clear();
             return RedirectToAction("Index","Home");
             decimal total = 0;
             foreach (var item in cart.OrderItems)
@@ -46,7 +50,6 @@ namespace MvcStore.Controllers
                                 };
             _storeBL.CreateOrder(currentOrder);
             _storeBL.UpdateInventory(currentOrder);
-            cart.OrderItems.Clear();
         }
         public ActionResult Details(int Id)
         {
@@ -63,7 +66,9 @@ namespace MvcStore.Controllers
                     if(cart.OrderItems == null || cart.LocationID != inventory2BUpdated.LocationId)
                     {
                         cart.OrderItems = new List<OrderItems>();
+                        cart.OrderItems.Clear();
                     }
+                    _logger.LogWarning($"User has added {inventory2BUpdated.ProductName} to their cart!");
                     Inventory chosenInventory = _mapper.cast2Inventory(inventory2BUpdated);
                     chosenInventory.InventoryProduct = _storeBL.GetInventory(inventory2BUpdated.InventoryId).InventoryProduct;
                     OrderItems currentItem = new OrderItems{
