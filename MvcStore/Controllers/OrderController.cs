@@ -47,11 +47,12 @@ namespace MvcStore.Controllers
                                 LocationID = (int)HttpContext.Session.GetInt32("LocationID")
                                 };
             
+            _storeBL.CreateOrder(currentOrder);
             _storeBL.UpdateInventory(currentOrder);
             _logger.LogWarning($"User Checkout!");
             cart.OrderItems.Clear();
             return RedirectToAction("Index","Home");
-            _storeBL.CreateOrder(currentOrder);
+            
         }
         public ActionResult Details(int Id)
         {
@@ -75,7 +76,8 @@ namespace MvcStore.Controllers
                     chosenInventory.InventoryProduct = _storeBL.GetInventory(inventory2BUpdated.InventoryId).InventoryProduct;
                     OrderItems currentItem = new OrderItems{
                                                 OrderQuantity = chosenInventory.InventoryQuantity,
-                                                OrderItemProduct = chosenInventory.InventoryProduct
+                                                OrderItemProduct = chosenInventory.InventoryProduct,
+                                                ProductID = chosenInventory.InventoryProduct.Id
                                             };
                     cart.LocationID = inventory2BUpdated.LocationId;
                     cart.OrderItems.Add(currentItem);

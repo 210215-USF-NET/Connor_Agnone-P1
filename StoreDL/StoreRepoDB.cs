@@ -35,9 +35,12 @@ namespace StoreDL
             finalOrder.OrderDate = newOrder.OrderDate;
             finalOrder.OrderTotal = newOrder.OrderTotal;
             finalOrder.OrderItems = new List<OrderItems>();
+            OrderItems temp = new OrderItems();
             foreach (var item in newOrder.OrderItems)
             {
-                finalOrder.OrderItems.Add(item);
+                temp.ProductID = item.ProductID;
+                temp.OrderQuantity = item.OrderQuantity;
+                finalOrder.OrderItems.Add(temp);
             }
             _context.Orders.Add(finalOrder);
             _context.SaveChanges();
