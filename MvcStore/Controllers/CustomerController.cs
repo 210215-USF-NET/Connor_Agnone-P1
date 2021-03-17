@@ -17,11 +17,6 @@ namespace MvcStore.Controllers
         private readonly IStoreBL _storeBL;
         private readonly IMapper _mapper;
         private readonly ILogger<CustomerController> _logger;
-        // public CustomerController(IStoreBL storeBL, IMapper mapper)
-        // {
-        //     _storeBL = storeBL;
-        //     _mapper = mapper;
-        // }
         public CustomerController(IStoreBL storeBL, IMapper mapper,ILogger<CustomerController> logger)
         {
             _storeBL = storeBL;

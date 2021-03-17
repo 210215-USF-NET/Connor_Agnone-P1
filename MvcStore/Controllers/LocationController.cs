@@ -51,6 +51,7 @@ namespace MvcStore.Controllers
                 try
                 {
                     _storeBL.UpdateInventory(_mapper.cast2Inventory(inventory2BUpdated));
+                    _logger.LogInformation($"Inventory with Id: {inventory2BUpdated.InventoryId} has been updated");
                     return RedirectToAction(nameof(Index));
                 }
                 catch
