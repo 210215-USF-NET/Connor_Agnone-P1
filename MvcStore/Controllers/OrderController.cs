@@ -33,9 +33,7 @@ namespace MvcStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Checkout(CheckoutVM checkout)
         {
-            _logger.LogWarning($"User Checkout!");
-            cart.OrderItems.Clear();
-            return RedirectToAction("Index","Home");
+            
             decimal total = 0;
             foreach (var item in cart.OrderItems)
             {
@@ -48,8 +46,12 @@ namespace MvcStore.Controllers
                                 CustomerID = (int)HttpContext.Session.GetInt32("CustomerID"),
                                 LocationID = (int)HttpContext.Session.GetInt32("LocationID")
                                 };
-            _storeBL.CreateOrder(currentOrder);
+            
             _storeBL.UpdateInventory(currentOrder);
+            _logger.LogWarning($"User Checkout!");
+            cart.OrderItems.Clear();
+            return RedirectToAction("Index","Home");
+            _storeBL.CreateOrder(currentOrder);
         }
         public ActionResult Details(int Id)
         {
