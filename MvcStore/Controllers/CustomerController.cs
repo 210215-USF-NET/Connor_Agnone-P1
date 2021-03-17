@@ -97,13 +97,13 @@ namespace MvcStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                _storeBL.currentCustomer = _storeBL.GetCustomerByEmail(customerVM.CustomerEmail);
-                if (_storeBL.currentCustomer == null)
+                Customer customer = _storeBL.GetCustomerByEmail(customerVM.CustomerEmail);
+                if (customer == null)
                 {
                     return NotFound();
                 }
-                HttpContext.Session.SetString("CustomerEmail", _storeBL.currentCustomer.CustomerEmail);
-                HttpContext.Session.SetInt32("CustomerID", _storeBL.currentCustomer.Id);
+                HttpContext.Session.SetString("CustomerEmail", customer.CustomerEmail);
+                HttpContext.Session.SetInt32("CustomerID", customer.Id);
                 return Redirect("/");
             }
             return BadRequest("Invalid model state");

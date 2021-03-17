@@ -17,6 +17,7 @@ namespace MvcStore.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
+        [DisplayName("Customer Email")]
         public string CustomerEmail { get; set; }
     }
 }

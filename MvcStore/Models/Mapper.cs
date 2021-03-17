@@ -105,5 +105,16 @@ namespace MvcStore.Models
                 ProductId = inventory.InventoryProduct.Id
             };
         }
+
+        public CheckoutVM cast2CheckoutVM(OrderItems orderItems)
+        {
+            return new CheckoutVM
+            {
+                Quantity = orderItems.OrderQuantity,
+                ProductName = orderItems.OrderItemProduct.ProductName,
+                ProductPrice = orderItems.OrderItemProduct.ProductPrice,
+                ProductID = orderItems.OrderItemProduct.Id
+            };
+        }
     }
 }

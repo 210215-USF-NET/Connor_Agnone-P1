@@ -28,7 +28,7 @@ namespace MvcStore.Controllers
 
         public ActionResult Details(int Id)
         {
-            _storeBL.currentLocation = _storeBL.SetLocation(Id);
+            HttpContext.Session.SetInt32("LocationID", Id);
             return View(_storeBL.GetInventories(Id).Select(inventory => _mapper.cast2LocationIVM(inventory)).ToList());
         }
         public ActionResult Manager(int Id)

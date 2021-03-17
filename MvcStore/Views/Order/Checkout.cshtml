@@ -1,0 +1,48 @@
+@using Microsoft.AspNetCore.Http
+@using System
+@model IEnumerable<MvcStore.Models.CheckoutVM>
+
+@{
+    ViewData["Title"] = "Customer Cart";
+}
+@{decimal total = 0;}
+<h1>Here's your Cart!</h1>
+<form asp-action="Checkout">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+            total += (item.ProductPrice * item.Quantity);
+        }
+    </tbody>
+</table>
+<div>Total: $@total</div>
+<div class="form-group">
+    <input type="submit" value="Place Order" class="btn btn-primary" />
+</div>
+</form>

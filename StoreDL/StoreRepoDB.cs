@@ -27,7 +27,17 @@ namespace StoreDL
 
         public Order CreateOrder(Order newOrder)
         {
-            _context.Orders.Add(newOrder);
+            Order finalOrder = new Order();
+            finalOrder.CustomerID = newOrder.CustomerID;
+            finalOrder.LocationID = newOrder.LocationID;
+            finalOrder.OrderDate = newOrder.OrderDate;
+            finalOrder.OrderTotal = newOrder.OrderTotal;
+            finalOrder.OrderItems = new List<OrderItems>();
+            foreach (var item in newOrder.OrderItems)
+            {
+                finalOrder.OrderItems.Add(item);
+            }
+            _context.Orders.Add(finalOrder);
             _context.SaveChanges();
             return newOrder;
         }
@@ -164,7 +174,26 @@ namespace StoreDL
 
         public Order UpdateInventory(Order newOrder)
         {
-            List<Inventory> currentInventory = GetInventories(newOrder.LocationID);
+            
+            List<Product> products = _context.Products
+                                            .AsNoTracking()
+                                            .Select(product => product)
+                                            .ToList();
+            List<Inventory> currentInventory = _context.Inventories
+                                            .AsNoTracking()
+                                            .Where(inventory => inventory.LocationID == newOrder.LocationID)
+                                            .ToList();
+            for(int i = 0; i < currentInventory.Count; i++)
+            {
+                foreach(var product in products)
+                {
+                    if(product.Id == currentInventory[i].ProductID)
+                    {
+                        currentInventory[i].InventoryProduct = product;
+                        break;
+                    }
+                }
+            }
             foreach (var item in newOrder.OrderItems)
             {
                 foreach (var inventory in currentInventory)
@@ -173,10 +202,14 @@ namespace StoreDL
                     {
                         Inventory temp  = inventory;
                         temp.InventoryQuantity = temp.InventoryQuantity - item.OrderQuantity;
+                        Inventory oldInventory = _context.Inventories.Find(inventory.Id);
+                        _context.Entry(oldInventory).CurrentValues.SetValues(temp);
                         temp = UpdateInventory(temp);
                     }
                 }
             }
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
             return newOrder;
         }
 

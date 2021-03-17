@@ -1,0 +1,42 @@
+@model MvcStore.Models.LocationEditVM
+
+@{
+    ViewData["Title"] = "Add To Order";
+}
+
+<h1>How much do you want?</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Details">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input type="hidden" asp-for="ProductName" value=@Model.ProductName />
+                @Html.DisplayFor(model => model.ProductName)
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label"></label>
+                <input type="hidden" asp-for="ProductPrice" value=@Model.ProductPrice />
+                @Html.DisplayFor(model => model.ProductPrice)
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InventoryQuantity" class="control-label"></label>
+                <input type="number" asp-for="InventoryQuantity" class="form-control" value="1" min="1" max="InventoryQuantity"/>
+                <span asp-validation-for="InventoryQuantity" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="InventoryId" value=@Model.InventoryId />
+            <input type="hidden" asp-for="LocationId" value=@Model.LocationId />
+            <input type="hidden" asp-for="ProductId" value=@Model.ProductId />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

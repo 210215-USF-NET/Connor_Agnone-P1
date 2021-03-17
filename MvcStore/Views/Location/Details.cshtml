@@ -47,3 +47,7 @@
         }
     </tbody>
 </table>
+@if(Context.Session.GetString("CustomerEmail") != null)
+{
+    @Html.ActionLink("Checkout","Checkout","Order")
+}
