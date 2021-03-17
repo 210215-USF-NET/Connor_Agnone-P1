@@ -24,6 +24,11 @@ steps:
     projectName: 'Connor_Agnone-P1'
 
 - task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.sln'
+    feedsToUse: 'select'
+- task: DotNetCoreCLI@2
   displayName: build
   inputs:
     command: 'build'
