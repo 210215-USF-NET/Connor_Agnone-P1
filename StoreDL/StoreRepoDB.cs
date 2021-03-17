@@ -22,7 +22,9 @@ namespace StoreDL
         //gonna be seeding locations, products, and inventories so these implementations shouldn't need implemented.
         public Location CreateLocation(Location newLocation)
         {
-            throw new NotImplementedException();
+            _context.Locations.Add(newLocation);
+            _context.SaveChanges();
+            return newLocation;
         }
 
         public Order CreateOrder(Order newOrder)
@@ -44,7 +46,9 @@ namespace StoreDL
 
         public Product CreateProduct(Product newProduct)
         {
-            throw new NotImplementedException();
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
+            return newProduct;
         }
 
         public Customer CurrentCustomer(Customer newCustomer)

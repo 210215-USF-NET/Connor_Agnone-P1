@@ -15,10 +15,12 @@ namespace MvcStore.Controllers
     {
         private readonly IStoreBL _storeBL;
         private readonly IMapper _mapper;
-        public LocationController(IStoreBL storeBL, IMapper mapper)
+        private readonly ILogger<LocationController> _logger;
+        public LocationController(IStoreBL storeBL, IMapper mapper, ILogger<LocationController> logger)
         {
             _storeBL = storeBL;
             _mapper = mapper;
+            _logger = logger;
         }
         
         public ActionResult Index()
