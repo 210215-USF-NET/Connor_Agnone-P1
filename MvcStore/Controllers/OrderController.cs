@@ -31,6 +31,7 @@ namespace MvcStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Checkout(CheckoutVM checkout)
         {
+            return RedirectToAction("Index","Home");
             decimal total = 0;
             foreach (var item in cart.OrderItems)
             {
@@ -46,7 +47,6 @@ namespace MvcStore.Controllers
             _storeBL.CreateOrder(currentOrder);
             _storeBL.UpdateInventory(currentOrder);
             cart.OrderItems.Clear();
-            return RedirectToAction("Index","Home");
         }
         public ActionResult Details(int Id)
         {
