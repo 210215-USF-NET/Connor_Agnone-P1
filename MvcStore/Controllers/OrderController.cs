@@ -41,12 +41,19 @@ namespace MvcStore.Controllers
             }
             Order currentOrder = new Order{
                                 OrderTotal = total,
-                                OrderItems = cart.OrderItems,
+                                OrderItems = new List<OrderItems>(),
                                 OrderDate = DateTime.Now,
                                 CustomerID = (int)HttpContext.Session.GetInt32("CustomerID"),
                                 LocationID = (int)HttpContext.Session.GetInt32("LocationID")
                                 };
-            
+            foreach (var thing in cart.OrderItems)
+            {
+                currentOrder.OrderItems.Add(new OrderItems{
+                    OrderQuantity = thing.OrderQuantity,
+                    ProductID = thing.ProductID
+                });
+            }
+
             _storeBL.CreateOrder(currentOrder);
             _storeBL.UpdateInventory(currentOrder);
             _logger.LogWarning($"User Checkout!");

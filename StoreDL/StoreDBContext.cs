@@ -39,9 +39,7 @@ namespace StoreDL
             modelBuilder.Entity<OrderItems>()
                 .Property(orderItem => orderItem.Id)
                 .ValueGeneratedOnAdd();
-            modelBuilder.Entity<OrderItems>()
-                .HasOne(orderItem => orderItem.OrderItemProduct)
-                .WithOne();
+            
             
             //Seed data
             modelBuilder.Entity<Location>()

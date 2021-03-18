@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StoreDL;
@@ -9,9 +10,10 @@ using StoreDL;
 namespace StoreDL.Migrations
 {
     [DbContext(typeof(StoreDBContext))]
-    partial class StoreDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210318172915_AnotherOrderFix3")]
+    partial class AnotherOrderFix3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -375,7 +377,8 @@ namespace StoreDL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("CustomerID")
+                        .IsUnique();
 
                     b.ToTable("Orders");
                 });
@@ -517,8 +520,8 @@ namespace StoreDL.Migrations
             modelBuilder.Entity("StoreModels.Order", b =>
                 {
                     b.HasOne("StoreModels.Customer", null)
-                        .WithMany("CustomerOrder")
-                        .HasForeignKey("CustomerID")
+                        .WithOne("CustomerOrder")
+                        .HasForeignKey("StoreModels.Order", "CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
