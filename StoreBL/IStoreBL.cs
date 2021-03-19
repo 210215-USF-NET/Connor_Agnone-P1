@@ -20,6 +20,7 @@ namespace StoreBL
         List<Inventory> GetInventory();
         List<Inventory> GetInventories(int locationID);
         Inventory GetInventory(int inventoryID);
+        List<Order> GetOrders(int locationID);
         Location SetLocation(int locationID);
         Order CreateOrder(Order newOrder);
         Order UpdateInventory(Order newOrder);

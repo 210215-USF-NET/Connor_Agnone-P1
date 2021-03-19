@@ -15,6 +15,7 @@ namespace StoreDL
         List<Location> GetLocations();
         List<Inventory> GetInventories(int locationID);
         List<Inventory> GetInventory();
+        List<Order> GetOrders(int locationID);
         Inventory GetInventory(int inventoryID);
         List<Product> GetProducts();
         Location CurrentLocation(Location newLocation);

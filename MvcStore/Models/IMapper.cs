@@ -18,6 +18,7 @@ namespace MvcStore.Models
         LocationEditVM cast2LocationEditVM(Inventory inventory);
         //Order mappers
         CheckoutVM cast2CheckoutVM(OrderItems orderItems);
+        OrderVM cast2OrderVM(Order order);
 
     }
 }

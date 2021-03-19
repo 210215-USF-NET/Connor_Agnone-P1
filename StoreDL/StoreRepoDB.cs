@@ -29,19 +29,6 @@ namespace StoreDL
 
         public Order CreateOrder(Order newOrder)
         {
-            // Order finalOrder = new Order();
-            // finalOrder.CustomerID = newOrder.CustomerID;
-            // finalOrder.LocationID = newOrder.LocationID;
-            // finalOrder.OrderDate = newOrder.OrderDate;
-            // finalOrder.OrderTotal = newOrder.OrderTotal;
-            // finalOrder.OrderItems = new List<OrderItems>();
-            // OrderItems temp = new OrderItems();
-            // foreach (var item in newOrder.OrderItems)
-            // {
-            //     temp.ProductID = item.ProductID;
-            //     temp.OrderQuantity = item.OrderQuantity;
-            //     finalOrder.OrderItems.Add(temp);
-            // }
             _context.Orders.Add(newOrder);
             _context.SaveChanges();
             return newOrder;
@@ -145,6 +132,14 @@ namespace StoreDL
             return _context.Locations
                 .AsNoTracking()
                 .Select(location => location)
+                .ToList();
+        }
+
+        public List<Order> GetOrders(int locationID)
+        {
+            return _context.Orders
+                .AsNoTracking()
+                .Where(order => order.LocationID == locationID)
                 .ToList();
         }
 

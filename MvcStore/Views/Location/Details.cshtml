@@ -40,7 +40,7 @@
                     {
                         @Html.ActionLink("Add to Order","Details","Order", new {Id = item.InventoryId})
                     }
-                    @*Html.ActionLink("Details", "Details", new { Id=item.LocationID }) |*@
+                    @*Html.ActionLink("Orders", "Orders", new { Id=Context.Session.GetInt32("LocationID") }) |*@
                     @*Html.ActionLink("Delete", "Delete", new { name=item.CustomerName}) *@
                 </td>
             </tr>

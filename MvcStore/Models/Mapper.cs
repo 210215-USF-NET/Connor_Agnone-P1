@@ -116,5 +116,15 @@ namespace MvcStore.Models
                 ProductID = orderItems.OrderItemProduct.Id
             };
         }
+
+        public OrderVM cast2OrderVM(Order order)
+        {
+            return new OrderVM
+            {
+                CustomerID = order.CustomerID,
+                OrderDate = order.OrderDate,
+                OrderTotal = order.OrderTotal
+            };
+        }
     }
 }

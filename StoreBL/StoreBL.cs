@@ -91,5 +91,10 @@ namespace StoreBL
         {
             return _repo.GetCustomerByEmail(email);
         }
+
+        public List<Order> GetOrders(int locationID)
+        {
+            return _repo.GetOrders(locationID);
+        }
     }
 }
